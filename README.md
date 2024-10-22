@@ -1,3 +1,4 @@
-# ansi-preview README
+preview file: html,svg,ans,wem
 
-preview file: html,svg,ans
+## todo
+- [ ] ffmpeg-wasm is too large, you need to install ffmpeg locally

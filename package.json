@@ -14,9 +14,7 @@
   "engines": {
     "vscode": "^1.94.0"
   },
-  "categories": [
-    "Other"
-  ],
+  "categories": ["Other"],
   "activationEvents": [
     "onFileSystem:ans",
     "onFileSystem:svg",
@@ -76,6 +74,7 @@
     }
   },
   "scripts": {
+    "pre-check": "npm run format && npm run lint:fix",
     "vscode:prepublish": "pnpm run bundle",
     "compile": "pnpm run check-types && pnpm run lint && node esbuild.js",
     "watch": "npm-run-all -p watch:*",
@@ -94,10 +93,12 @@
     "publish": " vsce publish --no-dependencies"
   },
   "dependencies": {
-    "ansi2": "0.1.15"
+    "ansi2": "0.1.15",
+    "crypto-js": "^4.2.0"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.3",
+    "@types/crypto-js": "^4.2.2",
     "@types/node": "22.7.8",
     "@types/vscode": "^1.94.0",
     "esbuild": "^0.24.0",

@@ -8,7 +8,7 @@ export const Html: Rule = {
     const fileExtension = path.extname(filePath)
     return [".html"].includes(fileExtension)
   },
-  render(filePath: string) {
+  async render(filePath: string) {
     const html = fs.readFileSync(filePath, "utf-8")
     return html
   },

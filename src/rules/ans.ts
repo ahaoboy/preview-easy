@@ -11,7 +11,7 @@ export const Ans: Rule = {
     console.debug("fileExtension", filePath, fileExtension)
     return [".ans", ".ansi"].includes(fileExtension)
   },
-  render(filePath: string) {
+  async render(filePath: string) {
     const s = fs.readFileSync(filePath, "utf-8")
 
     // FIXME: html looks better than svg?

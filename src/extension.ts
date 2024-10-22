@@ -21,11 +21,14 @@ function isMatch(fileName: string): boolean {
  * Generates the webview content
  * @param fileName: string
  */
-function updateWebviewContent(fileName: string): void {
+async function updateWebviewContent(fileName: string) {
   if (panel) {
     const r = Rules.find((i) => i.match(fileName))
     if (r) {
-      panel.webview.html = r.render(fileName)
+      const html = await r.render(fileName)
+      if (html.length) {
+        panel.webview.html = html
+      }
     }
   }
 }
