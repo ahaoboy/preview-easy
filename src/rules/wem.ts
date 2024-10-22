@@ -10,9 +10,9 @@ async function getMp3(filePath: string): Promise<string | undefined> {
   const hash = MD5(filePath).toString()
   const tempDir = os.tmpdir()
   const mp3FilePath = path.join(tempDir, `${hash}.mp3`)
-  const cmd = `ffmpeg -i "${filePath}" "${mp3FilePath}"`
+  const cmd = `vgmstream-cli "${filePath}" -o "${mp3FilePath}"`
   if (!fs.existsSync(mp3FilePath)) {
-    await new Promise((resolve,reject) =>
+    await new Promise((resolve, reject) =>
       exec(cmd, (error, stdout, stderr) => {
         if (error || stderr) {
           reject(error || stderr)
@@ -39,6 +39,14 @@ export const Wem: Rule = {
     }
     const BASE64_AUDIO_DATA = fs.readFileSync(mp3).toString("base64")
     return renderToHtml(`
+<style>
+body {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  margin: 0;
+}
+</style>
 <audio controls>
 <source src="data:audio/mp3;base64,${BASE64_AUDIO_DATA}" type="audio/mp3">
 </audio>
