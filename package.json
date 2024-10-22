@@ -2,41 +2,105 @@
   "name": "preview-easy",
   "displayName": "preview-easy",
   "description": "preview-easy",
-  "version": "0.0.1",
+  "version": "0.0.2",
+  "author": "ahaoboy",
+  "license": "MIT",
+  "publisher": "ahaoboy",
+  "homepage": "https://github.com/ahaoboy/preview-easy",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahaoboy/preview-easy.git"
+  },
   "engines": {
     "vscode": "^1.94.0"
   },
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onFileSystem:ans",
+    "onFileSystem:svg",
+    "onFileSystem:html"
+  ],
   "main": "./dist/extension.js",
   "contributes": {
+    "views": {
+      "explorer": [
+        {
+          "id": "ansiPreview",
+          "name": "ansi preview"
+        }
+      ]
+    },
     "commands": [
       {
-        "command": "preview-easy.helloWorld",
-        "title": "Hello World"
+        "command": "extension.openExtensionPage",
+        "title": "Open Extension's Page in the Marketplace"
+      },
+      {
+        "command": "extension.openPreviewOnFocus",
+        "title": "Open Preview"
+      },
+      {
+        "command": "extension.openPreviewMenu",
+        "title": "Open preview"
+      },
+      {
+        "command": "extension.openPreviewOnEditorShortcut",
+        "title": "Open preview"
       }
-    ]
+    ],
+    "keybindings": [
+      {
+        "key": "ctrl+shift+t",
+        "command": "extension.openPreviewOnFocus",
+        "when": "editorTextFocus",
+        "mac": "cmd+shift+t"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "when": "resourceFilename =~ /.*\\.(ans|html|svg)$/",
+          "command": "extension.openPreviewOnEditorShortcut",
+          "group": "navigation"
+        }
+      ],
+      "explorer/context": [
+        {
+          "when": "resourceFilename =~ /.*\\.(ans|html|svg)$/",
+          "command": "extension.openPreviewMenu",
+          "group": "navigation"
+        }
+      ]
+    }
   },
   "scripts": {
-    "vscode:prepublish": "pnpm run package",
+    "vscode:prepublish": "pnpm run bundle",
     "compile": "pnpm run check-types && pnpm run lint && node esbuild.js",
     "watch": "npm-run-all -p watch:*",
     "watch:esbuild": "node esbuild.js --watch",
     "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
-    "package": "pnpm run check-types && pnpm run lint && node esbuild.js --production",
+    "bundle": "pnpm run check-types && pnpm run lint && node esbuild.js --production",
     "compile-tests": "tsc -p . --outDir out",
     "watch-tests": "tsc -p . -w --outDir out",
     "pretest": "pnpm run compile-tests && pnpm run compile && pnpm run lint",
     "check-types": "tsc --noEmit",
-    "lint": "eslint src",
-    "test": "vscode-test"
+    "lint": "biome lint",
+    "test": "vscode-test",
+    "format": "biome format --write  ./",
+    "lint:fix": "biome lint ./ --write --unsafe",
+    "package": "vsce package --no-dependencies",
+    "publish": " vsce publish --no-dependencies"
+  },
+  "dependencies": {
+    "ansi2": "0.1.15"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.9.3",
     "@types/vscode": "^1.94.0",
     "@types/mocha": "^10.0.8",
-    "@types/node": "20.x",
+    "@types/node": "22.7.8",
     "@typescript-eslint/eslint-plugin": "^8.7.0",
     "@typescript-eslint/parser": "^8.7.0",
     "eslint": "^9.11.1",

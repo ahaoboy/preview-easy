@@ -1,3 +1,3 @@
-# preview-easy README
+# ansi-preview README
 
-preivew-easy support html, svg, ansi
+preview file: html,svg,ans
