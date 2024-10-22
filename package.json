@@ -18,6 +18,7 @@
   "activationEvents": [
     "onFileSystem:ans",
     "onFileSystem:svg",
+    "onFileSystem:wem",
     "onFileSystem:html"
   ],
   "main": "./dist/extension.js",
@@ -59,14 +60,14 @@
     "menus": {
       "editor/title": [
         {
-          "when": "resourceFilename =~ /.*\\.(ans|html|svg)$/",
+          "when": "resourceFilename =~ /.*\\.(ans|html|svg|wem)$/",
           "command": "extension.openPreviewOnEditorShortcut",
           "group": "navigation"
         }
       ],
       "explorer/context": [
         {
-          "when": "resourceFilename =~ /.*\\.(ans|html|svg)$/",
+          "when": "resourceFilename =~ /.*\\.(ans|html|svg|wem)$/",
           "command": "extension.openPreviewMenu",
           "group": "navigation"
         }
