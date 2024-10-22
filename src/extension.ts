@@ -1,7 +1,7 @@
 import * as vscode from "vscode"
-import { Html,Svg, Ans,Wem } from "./rules"
+import { Html, Svg, Ans, Wem } from "./rules"
 
-const Rules = [Html, Svg, Ans,Wem]
+const Rules = [Html, Svg, Ans, Wem]
 
 let panel: vscode.WebviewPanel | undefined
 let statusBarItem: vscode.StatusBarItem | undefined
