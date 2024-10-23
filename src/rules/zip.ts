@@ -2,6 +2,7 @@ import type { Rule } from "../type"
 import fs from "fs"
 import path from "path"
 import AdmZip from "adm-zip"
+import unrar from 'node-unrar-js'
 
 type Info = {
   name: string
@@ -43,7 +44,7 @@ function renderTree(list: Info[]): string {
 `
 }
 
-function getInfo(filePath: string): Info[] {
+async function getInfo(filePath: string): Promise<Info[]> {
   const list: Info[] = []
   if (filePath.endsWith(".zip")) {
     const zip = new AdmZip(filePath)
@@ -59,6 +60,21 @@ function getInfo(filePath: string): Info[] {
       })
     }
   } else if (filePath.endsWith(".rar")) {
+    const buf = Uint8Array.from(fs.readFileSync(filePath)).buffer;
+    const extractor = await unrar.createExtractorFromData({ data: buf });
+    const fileList = extractor.getFileList();
+
+    for(const entry of fileList.fileHeaders){
+      list.push({
+        name: entry.name,
+        path: entry.name,
+        mode: 0,
+        time: new Date(entry.time),
+        size: entry.unpSize,
+        compressedSize: entry.packSize,
+        isDirectory: entry.flags.directory
+      })
+    }
   } else if (filePath.endsWith(".7z")) {
   } else if (filePath.endsWith(".tar")) {
   } else if (filePath.endsWith(".gz")) {
@@ -73,7 +89,7 @@ export const Zip: Rule = {
     return [".zip", ".rar", ".7z", ".tar", ".gz"].includes(fileExtension)
   },
   async render(filePath: string) {
-    const list = getInfo(filePath)
+    const list =await getInfo(filePath)
     const html = renderTree(list)
     return html
   },
