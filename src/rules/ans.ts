@@ -7,8 +7,6 @@ export const Ans: Rule = {
   id: "ans",
   match(filePath: string) {
     const fileExtension = path.extname(filePath)
-    console.log("fileExtension", filePath, fileExtension)
-    console.debug("fileExtension", filePath, fileExtension)
     return [".ans", ".ansi"].includes(fileExtension)
   },
   async render(filePath: string) {

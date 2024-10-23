@@ -2,11 +2,13 @@ import type { Rule } from "../type"
 import fs from "fs"
 import path from "path"
 
-export const Svg: Rule = {
-  id: "svg",
+function renderTree() {}
+
+export const Zip: Rule = {
+  id: "zip",
   match(filePath: string) {
     const fileExtension = path.extname(filePath)
-    return [".svg"].includes(fileExtension)
+    return [".zip", ".rar", ".7z", ".tar", ".gz"].includes(fileExtension)
   },
   async render(path: string) {
     const html = fs.readFileSync(path, "utf-8")

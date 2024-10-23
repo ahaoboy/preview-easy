@@ -17,9 +17,14 @@
   "categories": ["Other"],
   "activationEvents": [
     "onFileSystem:ans",
+    "onFileSystem:html",
     "onFileSystem:svg",
     "onFileSystem:wem",
-    "onFileSystem:html"
+    "onFileSystem:zip",
+    "onFileSystem:rar",
+    "onFileSystem:7z",
+    "onFileSystem:tar",
+    "onFileSystem:gz"
   ],
   "main": "./dist/extension.js",
   "contributes": {
@@ -60,14 +65,14 @@
     "menus": {
       "editor/title": [
         {
-          "when": "resourceFilename =~ /.*\\.(ans|html|svg|wem)$/",
+          "when": "resourceFilename =~ /.*\\.(ans|html|svg|wem|zip|rar|7z|tar|gz)$/",
           "command": "extension.openPreviewOnEditorShortcut",
           "group": "navigation"
         }
       ],
       "explorer/context": [
         {
-          "when": "resourceFilename =~ /.*\\.(ans|html|svg|wem)$/",
+          "when": "resourceFilename =~ /.*\\.(ans|html|svg|wem|zip|rar|7z|tar|gz)$/",
           "command": "extension.openPreviewMenu",
           "group": "navigation"
         }
