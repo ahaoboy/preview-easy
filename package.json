@@ -24,7 +24,8 @@
     "onFileSystem:rar",
     "onFileSystem:7z",
     "onFileSystem:tar",
-    "onFileSystem:gz"
+    "onFileSystem:gz",
+    "onFileSystem:dot"
   ],
   "main": "./dist/extension.js",
   "contributes": {
@@ -65,14 +66,14 @@
     "menus": {
       "editor/title": [
         {
-          "when": "resourceFilename =~ /.*\\.(ans|html|svg|wem|zip|rar|7z|tar|gz)$/",
+          "when": "resourceFilename =~ /.*\\.(ans|html|svg|wem|zip|rar|7z|tar|gz|dot)$/",
           "command": "extension.openPreviewOnEditorShortcut",
           "group": "navigation"
         }
       ],
       "explorer/context": [
         {
-          "when": "resourceFilename =~ /.*\\.(ans|html|svg|wem|zip|rar|7z|tar|gz)$/",
+          "when": "resourceFilename =~ /.*\\.(ans|html|svg|wem|zip|rar|7z|tar|gz|dot)$/",
           "command": "extension.openPreviewMenu",
           "group": "navigation"
         }

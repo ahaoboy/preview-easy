@@ -35,7 +35,7 @@ export const Wem: Rule = {
   async render(filePath: string) {
     const mp3 = await getMp3(filePath)
     if (!mp3) {
-      return ""
+      return
     }
     const BASE64_AUDIO_DATA = fs.readFileSync(mp3).toString("base64")
     return renderToHtml(`

@@ -1,7 +1,7 @@
 import * as vscode from "vscode"
-import { Html, Svg, Ans, Wem, Zip } from "./rules"
+import { Html, Svg, Ans, Wem, Zip, Dot } from "./rules"
 
-const Rules = [Html, Svg, Ans, Wem, Zip]
+const Rules = [Html, Svg, Ans, Wem, Zip, Dot]
 
 let panel: vscode.WebviewPanel | undefined
 let statusBarItem: vscode.StatusBarItem | undefined
@@ -24,7 +24,7 @@ async function updateWebviewContent(fileName: string) {
     const r = Rules.find((i) => i.match(fileName))
     if (r) {
       const html = await r.render(fileName)
-      if (html.length) {
+      if (html?.length) {
         panel.webview.html = html
       }
     }
