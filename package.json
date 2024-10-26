@@ -17,6 +17,7 @@
   "categories": ["Other"],
   "activationEvents": [
     "onFileSystem:ans",
+    "onFileSystem:ANS",
     "onFileSystem:html",
     "onFileSystem:svg",
     "onFileSystem:wem",
@@ -66,14 +67,14 @@
     "menus": {
       "editor/title": [
         {
-          "when": "resourceFilename =~ /.*\\.(ans|html|svg|wem|zip|rar|7z|tar|gz|dot)$/",
+          "when": "resourceFilename =~ /.*\\.(ANS|ans|html|svg|wem|zip|rar|7z|tar|gz|dot)$/",
           "command": "extension.openPreviewOnEditorShortcut",
           "group": "navigation"
         }
       ],
       "explorer/context": [
         {
-          "when": "resourceFilename =~ /.*\\.(ans|html|svg|wem|zip|rar|7z|tar|gz|dot)$/",
+          "when": "resourceFilename =~ /.*\\.(ANS|ans|html|svg|wem|zip|rar|7z|tar|gz|dot)$/",
           "command": "extension.openPreviewMenu",
           "group": "navigation"
         }
