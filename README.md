@@ -13,5 +13,9 @@ require https://www.7-zip.org/download.html
 
 require https://graphviz.org/
 
+## bgra
+
+image name: image.width.bgra
+
 ## todo
 - [ ] ffmpeg-wasm is too large, you need to install ffmpeg locally
